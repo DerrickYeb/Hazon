@@ -1,0 +1,42 @@
+﻿@using HazonClient.Pages
+@using Microsoft.AspNetCore.Identity
+@using Hazon.DAL.Domain.Models.AccountViewModels
+@model Hazon.DAL.Domain.Models.AccountViewModels.LoginViewModel
+@inject SignInManager<User> _signInManager
+@{
+    Layout = "_DashboardLightBlank";
+}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="login-content card">
+                <div class="login-form">
+                    <h4>Login</h4>
+                    <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="Post">
+                        <div class="form-group">
+                            <label>Email address</label>
+                            <input asp-for="Username" type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="RememberMe" type="checkbox"> Remember Me
+                            </label>
+                            <label class="pull-right">
+                                <a asp-controller="@MainMenu.ForgotPassword.ControllerName" asp-action="@MainMenu.ForgotPassword.ActionName">@MainMenu.ForgotPassword.PageName?</a>
+                            </label>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
+                        @*<div class="register-link m-t-15 text-center">
+                            <p>Don't have account ? <a href="#"> Sign Up Here</a></p>
+                        </div>*@
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
