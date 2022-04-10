@@ -3,6 +3,7 @@ using System;
 using Hazon.DAL.Domain.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Hazon.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220409102908_authMigration")]
+    partial class authMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -268,29 +270,6 @@ namespace Hazon.DAL.Migrations
                         .HasColumnType("text");
 
                     b.HasDiscriminator().HasValue("User");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "c9bec67b-60df-4ad4-9d86-92ad7490148f",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "3905e158-6cd3-40ab-ac29-937d1f85173e",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "2984e4a3-77aa-4eaa-b19c-1d9f71ab6a9f",
-                            TwoFactorEnabled = false,
-                            Contact = "0549234591",
-                            CreatedBy = "admin",
-                            CreatedDate = new DateTime(2022, 4, 9, 11, 49, 5, 264, DateTimeKind.Utc).AddTicks(4640),
-                            FirstName = "Derrick",
-                            LastName = "Yeboah",
-                            Password = "admin",
-                            ProfilePicture = "",
-                            RoleTypeId = "F529441F-72B0-4A51-B861-A6F7FC2327BA",
-                            TenantId = "F529441F-72B0-4A51-B861-A6F7FC2327BA",
-                            Username = "admin"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
