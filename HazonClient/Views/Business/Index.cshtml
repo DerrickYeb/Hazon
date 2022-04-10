@@ -3,87 +3,336 @@
 *@
 @{
     ViewData["Title"] =
-    "Lead";
-    ;
+            "Lead";
     Layout = "_DashboardLight";
+}
+@section Styles
+{
+    <style>
+        body{ 
+            margin-top:40px; 
+        }
+        .stepwizard-step p {
+            margin-top: 10px;
+        }
+
+        .stepwizard-row {
+            display: table-row;
+        }
+
+        .stepwizard {
+            display: table;
+            width: 100%;
+            position: relative;
+        }
+
+        .stepwizard-step button[disabled] {
+            opacity: 1 !important;
+            filter: alpha(opacity=100) !important;
+        }
+
+        .stepwizard-row:before {
+            top: 14px;
+            bottom: 0;
+            position: absolute;
+            content: " ";
+            width: 100%;
+            height: 1px;
+            background-color: #ccc;
+            /*z-order: 0;*/
+
+        }
+
+        .stepwizard-step {
+            display: table-cell;
+            text-align: center;
+            position: relative;
+        }
+
+        .btn-circle {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            padding: 6px 0;
+            font-size: 12px;
+            line-height: 1.428571429;
+            border-radius: 15px;
+        }
+    </style>
 }
 <div class="row">
     <div class="col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">New Customer Registration</h4>
-                <h6 class="card-subtitle">for Business</h6>
-                <form class="form p-t-12">
-                    <div class="form-group">
-                        <label for="pwd2">Client Type</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="ti-lock"></i></div>
-                            <select type="password" class="form-control form-type" id="pwd2" placeholder="Enter email">
-                                <option value="retail">Retail</option>
-                                <option value="corporate">Corporate</option>
-                            </select>
-                        </div>
+        <div>
+            <div class="card card-outline-primary">
+                <div class="card-body">
+                    <div class="card-header">
+                        <h4 class="m-b-0 text-white">Business</h4>
                     </div>
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <input type="text" class="form-control form-type" id="firstName" placeholder="First name">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#step1" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Client Details</span></a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#step2" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Policy</span></a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#step3" role="tab"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Vehicle</span></a> </li>
+                    </ul>
+                  @*  <div class="col">
+                        <div class="col-lg-6 responsive-md-100">
+                            <div class="stepwizard">
+                                <div class="stepwizard-row setup-panel">
+                                    <div class="stepwizard-step">
+                                        <a href="#step1" type="button" class="btn btn-primary btn-circle">
+                                            1
+                                        </a>
+                                        <p>Client</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">First Name</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <input type="text" class="form-control form-type" id="lastName" placeholder="Last name">
+                        <div class="col-lg-6 responsive-md-100">
+                            <div class="stepwizard">
+                                <div class="stepwizard-row setup-panel">
+                                    <div class="stepwizard-step">
+                                        <a href="#step2" type="button" class="btn btn-primary btn-circle">
+                                            2
+                                        </a>
+                                        <p>Insurance</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="firstName">Middle Name</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <input type="text" class="form-control form-type" id="middleName" placeholder="Middle name">
+                        <div class="col-lg-6 responsive-md-100">
+                            <div class="stepwizard">
+                                <div class="stepwizard-row setup-panel">
+                                    <div class="stepwizard-step">
+                                        <a href="#step3" type="button" class="btn btn-primary btn-circle">
+                                            3
+                                        </a>
+                                        <p>Payment</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="ti-email"></i></div>
-                            <input type="email" class="form-control form-type" id="exampleInputEmail1" placeholder="Enter email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd1">Contact</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="ti-lock"></i></div>
-                            <input type="tel" class="form-control form-type" id="contact" placeholder="Enter phone number">
-                        </div>
-                    </div>
+                    </div>*@
+                    
 
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <input type="text" class="form-control form-type" id="address" placeholder="enter client address">
+                    <form class="form p-t-12 tab-content">
+                        <div class="tab-pane" id="step1" role="tabpanel">
+                            <div class="col-xs-12">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="pwd2">Client Type</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="ti-lock"></i></div>
+                                            <select type="password" class="form-control form-type" id="pwd2" placeholder="Enter email">
+                                                <option value="retail">Retail</option>
+                                                <option value="corporate">Corporate</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                                            <input type="text" class="form-control form-type" id="firstName" placeholder="First name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">First Name</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                                            <input type="text" class="form-control form-type" id="lastName" placeholder="Last name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstName">Middle Name</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                                            <input type="text" class="form-control form-type" id="middleName" placeholder="Middle name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                                            <input type="email" class="form-control form-type" id="exampleInputEmail1" placeholder="Enter email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd1">Contact</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="ti-lock"></i></div>
+                                            <input type="tel" class="form-control form-type" id="contact" placeholder="Enter phone number">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                                            <input type="text" class="form-control form-type" id="address" placeholder="enter client address">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Date of Birth</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                                            <input type="date" class="form-control form-type" id="dob">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox checkbox-success">
+                                            <input id="notify" type="checkbox">
+                                            <label for="notify"> Send Notification </label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" id="nextBtn" class="btn btn-success waves-effect waves-light m-r-10">Submit & Continue</button>
+                                    <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Date of Birth</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <input type="date" class="form-control form-type" id="dob">
+                        <div class="tab-pane" id="step2" role="tabpanel">
+
+                            <div class="form-group">
+                                <label for="pwd2">Transaction Type</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-lock"></i></div>
+                                    <select type="password" class="form-control form-type" id="pwd2" placeholder="Enter email">
+                                        <option value="retail">Retail</option>
+                                        <option value="corporate">Corporate</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd2">Policy Type</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-lock"></i></div>
+                                    <select type="password" class="form-control form-type" id="pwd2" placeholder="Enter email">
+                                        <option value="retail">Motor</option>
+                                        <option value="corporate">Travel</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName">Start Date</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                    <input type="date" class="form-control form-type" id="firstName" placeholder="First name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">End Date</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                    <input type="date" class="form-control form-type" id="lastName" placeholder="Last name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName">Currency</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                    <input type="text" class="form-control form-type" id="middleName" placeholder="Middle name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Policy Number</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-email"></i></div>
+                                    <input type="email" class="form-control form-type" id="exampleInputEmail1" placeholder="Enter email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd2">Renewal Status</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-lock"></i></div>
+                                    <select type="password" class="form-control form-type" id="pwd2" placeholder="Enter email">
+                                        <option value="retail">Retail</option>
+                                        <option value="corporate">Corporate</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">Sum Insured</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                    <input type="number" class="form-control form-type" id="address" placeholder="enter client address">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Discount</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                    <input type="date" class="form-control form-type" id="dob">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox checkbox-success">
+                                    <input id="notify" type="checkbox">
+                                    <label for="notify"> Send Notification </label>
+                                </div>
+                            </div>
+                            <button type="submit" id="nextBtn" class="btn btn-success waves-effect waves-light m-r-10">Submit & Continue</button>
+                            <button type="submit" class="btn btn-inverse waves-effect waves-light">Prev</button>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox checkbox-success">
-                            <input id="notify" type="checkbox">
-                            <label for="notify"> Send Notification </label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
-                    <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
-                </form>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+@section Scripts{
+<script>
+    $(document).ready(function () {
+
+        var navListItems = $('div.setup-panel div a'),
+            allWells = $('.setup-content'),
+            allNextBtn = $('.nextBtn'),
+            allPrevBtn = $('.prevBtn');
+
+        allWells.hide();
+
+        navListItems.click(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                $item = $(this);
+
+            if (!$item.hasClass('disabled')) {
+                navListItems.removeClass('btn-primary').addClass('btn-default');
+                $item.addClass('btn-primary');
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+        });
+
+        allNextBtn.click(function(){
+            var curStep = $(this).closest(".setup-content"),
+                curStepBtn = curStep.attr("id"),
+                nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+                curInputs = curStep.find("input[type='text'],input[type='url']"),
+                isValid = true;
+
+            $(".form-group").removeClass("has-error");
+            for(var i=0; i<curInputs.length; i++){
+                if (!curInputs[i].validity.valid){
+                    isValid = false;
+                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+
+            if (isValid)
+                nextStepWizard.removeAttr('disabled').trigger('click');
+        });
+
+        allPrevBtn.click(function(){
+            var curStep = $(this).closest(".setup-content"),
+                curStepBtn = curStep.attr("id"),
+                prevStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().prev().children("a");
+
+            $(".form-group").removeClass("has-error");
+            prevStepWizard.removeAttr('disabled').trigger('click');
+        });
+
+        $('div.setup-panel div a.btn-primary').trigger('click');
+    });
+</script>
+}

@@ -22,10 +22,10 @@
     @await RenderSectionAsync("Styles",required:false)
 </head>
 
-<body class="header-fix fix-sidebar">
+<body class="header-fix fix-sidebar" style="overflow: hidden;">
     
 <!-- Main wrapper  -->
-<div id="main-wrapper">
+<div id="main-wrapper" style="background-image: url('/images/background/bg.jpg');background-size:inherit">
 
     <div class="unix-login">
         @RenderBody()
