@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation.Results;
 using Hazon.DAL.Application.Abstractions.CRM;
 using Hazon.DAL.Application.Repositories;
 using Hazon.DAL.Domain.Models;
@@ -26,24 +27,44 @@ namespace Hazon.DAL.Application.Services.Contact
             return result;
         }
 
-        public Task<bool> DeleteContact(Guid contactId)
+        public async Task<bool> DeleteContact(Guid contactId)
         {
-            throw new NotImplementedException();
+            var result =await _repository.RemoveByIdAsync<ClientDetailsModel>(contactId);
+            if (result is null) throw new Exception("Failed to delete contact");
+            return true;
         }
 
-        public Task<Guid> UpdateContactDetails(ClientDetailsModel contact)
+        public async Task<Guid> UpdateContactDetails(ClientDetailsModel contact)
         {
-            throw new NotImplementedException();
+            var exist = await _repository.ExistAsync<ClientDetailsModel>(a =>
+                a.Id == contact.Id && a.TenantId == contact.TenantId);
+            if (exist is null) throw new Exception("Failed to update contact info");
+            exist.FirstName = contact.FirstName;
+            exist.LastName = contact.LastName;
+            exist.Email= contact.Email;
+            exist.Contact = contact.Contact;
+            exist.Address = contact.Address;
+            exist.MiddleName = contact.MiddleName;
+            exist.ClientTypeId = contact.ClientTypeId;
+            exist.DOB = contact.DOB;
+
+            await _repository.UpdateAsync(exist);
+            return exist.Id;
         }
 
-        public Task<ClientDetailsModel> GetContact(Guid contactId)
+        public async Task<ClientDetailsModel> GetContact(Guid contactId)
         {
-            throw new NotImplementedException();
+            return await _repository.GetByIdAsync<ClientDetailsModel>(contactId);
         }
 
         public Task<ClientDetailsModel> MoveContactToBusiness(Guid contactId, ClientDetailsModel contact)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<ClientDetailsModel>> GetAllContacts()
+        {
+            return await _repository.GetAllAsync<ClientDetailsModel>();
         }
     }
 }

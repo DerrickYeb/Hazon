@@ -14,5 +14,6 @@ namespace Hazon.DAL.Application.Abstractions.CRM
         Task<Guid> UpdateContactDetails(ClientDetailsModel contact);
         Task<ClientDetailsModel> GetContact(Guid contactId);
         Task<ClientDetailsModel> MoveContactToBusiness(Guid contactId, ClientDetailsModel contact);
+        Task<IEnumerable<ClientDetailsModel>> GetAllContacts();
     }
 }

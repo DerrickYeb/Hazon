@@ -10,8 +10,8 @@ namespace Hazon.DAL.Application.Repositories
 {
     public interface IRepository
     {
-        public Task<T> GetByIdAsync<T>(int id)where T : BaseEntity;
-        public Task<T> GetAllAsync<T>()
+        public Task<T> GetByIdAsync<T>(Guid id)where T : BaseEntity;
+        public Task<IEnumerable<T>> GetAllAsync<T>()
         where T : BaseEntity;
         Task<int> GetCountAsync<T>(Expression<Func<T,bool>> predicate = null,CancellationToken cancellationToken = default) where T : BaseEntity;
 
@@ -20,8 +20,8 @@ namespace Hazon.DAL.Application.Repositories
         Task<T> CreateAsync<T>(T entity) where
             T:BaseEntity;
 
-        Task<A> ExistAsync<A>(Expression<Func<A, bool>> expression, CancellationToken token = default)
-            where A : BaseEntity;
+        Task<T> ExistAsync<T>(Expression<Func<T, bool>> expression, CancellationToken token = default)
+            where T : BaseEntity;
 
         Task<T> UpdateAsync<T>(T entity)where T:BaseEntity;
         Task<T> RemoveByIdAsync<T>(Guid id) where T : BaseEntity;

@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Application\Abstractions\CRM\ContactRepository\" />
-    <Folder Include="Domain\SharedDto\" />
     <Folder Include="Extensions\" />
     <Folder Include="Abstractions\" />
   </ItemGroup>
