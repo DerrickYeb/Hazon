@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 using Hazon.DAL.Domain.Data;
 using Hazon.DAL.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hazon.DAL.Application.Repositories
 {
-    public class Repository:IRepository
+    public abstract class Repository<T>:IRepository<T>
     {
         private readonly ApplicationDbContext _context;
 
-        public Repository(ApplicationDbContext context)
+        protected Repository(ApplicationDbContext context)
         {
             _context = context;
         }

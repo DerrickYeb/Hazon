@@ -1,13 +1,12 @@
-﻿using System.Text.Json.Serialization;
-using Hazon.DAL.Application.Abstractions;
-using Hazon.DAL.Domain.Models.AccountViewModels;
+﻿using Hazon.DAL.Application.Abstractions;
 using Hazon.DAL.Domain.SharedDto.AccountDtos;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace HazonApi.Controllers.Authentication
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -19,6 +18,7 @@ namespace HazonApi.Controllers.Authentication
             _authentication = authentication;
             _logger = logger;
         }
+        [AllowAnonymous]
         [HttpPost("user/username/password/login")]
         public async Task<IActionResult> UsernamePasswordLogin(AuthInputModel model)
         {

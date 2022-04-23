@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hazon.DAL.Domain.Models.AccountViewModels;
+﻿using Hazon.DAL.Domain.Models.AccountViewModels;
 
 namespace Hazon.DAL.Application.Abstractions
 {

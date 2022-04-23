@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation.Results;
-using Hazon.DAL.Application.Abstractions.CRM;
+﻿using Hazon.DAL.Application.Abstractions.CRM;
 using Hazon.DAL.Application.Repositories;
 using Hazon.DAL.Domain.Models;
 
@@ -12,9 +6,9 @@ namespace Hazon.DAL.Application.Services.Contact
 {
     public class ContactRepository:IContactRepository
     {
-        private readonly IRepository _repository;
+        private readonly IRepository<ClientDetailsModel> _repository;
 
-        public ContactRepository(IRepository repository)
+        public ContactRepository(IRepository<ClientDetailsModel> repository)
         {
             _repository = repository;
         }

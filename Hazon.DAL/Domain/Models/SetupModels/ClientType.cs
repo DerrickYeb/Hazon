@@ -2,5 +2,4 @@
 
 public class ClientType:BaseSetup
 {
-    public Guid ClientTypeId { get; set; }
 }

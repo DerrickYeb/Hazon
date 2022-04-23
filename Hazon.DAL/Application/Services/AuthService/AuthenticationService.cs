@@ -1,28 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using Hazon.DAL.Application.Abstractions;
 using Hazon.DAL.Domain.Data;
 using Hazon.DAL.Domain.Models.AccountViewModels;
 using Hazon.DAL.Domain.SharedDto.AccountDtos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Hazon.DAL.Application.Services.AuthService
 {
     public class AuthenticationService:IAuthenticationRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public AuthenticationService(ApplicationDbContext context)
+        public AuthenticationService(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
-        public async Task<User> AuthenticateUserAsync(AuthInputModel auth)
+        public async Task<Tokens> AuthenticateUserAsync(AuthInputModel auth)
         {
-            return (await _context.Users.Where(u => u.Username == auth.Username && u.Password == auth.Password).FirstOrDefaultAsync()!)!;
+            var user = (await _context.Users.Where(u => u.Username == auth.Username && u.Password == auth.Password).FirstOrDefaultAsync()!)!;
+            if (user == null) return null;
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenSecret = Encoding.UTF8.GetBytes(_configuration["jwtTokenConfig:secret"]);
+            var tokenDescriptor = new SecurityTokenDescriptor()
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new(ClaimTypes.Name, auth.Username)
+                }),
+                Expires = DateTime.UtcNow.AddDays(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenSecret), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return new Tokens
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                ProfilePicture = user.ProfilePicture,
+                Email = user.Email,
+                RoleTypeId = user.RoleTypeId,
+                PhoneNumber = user.PhoneNumber,
+                TenantId = user.TenantId,
+                Token = tokenHandler.WriteToken(token)
+            };
         }
 
         public async Task<User> RegisterUserAsync(UserInputModel user)

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
+using Hazon.DAL.Application.Abstractions.CRM;
 using Hazon.DAL.Domain.Models;
 
 namespace Hazon.DAL.Application.Repositories
 {
-    public interface IRepository
+    public interface IRepository<T>:ITransient
     {
         public Task<T> GetByIdAsync<T>(Guid id)where T : BaseEntity;
         public Task<IEnumerable<T>> GetAllAsync<T>()

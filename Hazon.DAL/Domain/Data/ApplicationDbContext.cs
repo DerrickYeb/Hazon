@@ -1,5 +1,5 @@
-﻿using Hazon.DAL.Domain.Models.AccountViewModels;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Hazon.DAL.Domain.Models;
+using Hazon.DAL.Domain.Models.AccountViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hazon.DAL.Domain.Data;
@@ -11,9 +11,12 @@ public class ApplicationDbContext :DbContext
     {
     }
     public DbSet<User> Users { get; set; }
+    public DbSet<ClientDetailsModel> ClientDetails { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        //builder.HasDefaultSchema("UserSchema").Entity<User>();
+        //builder.HasDefaultSchema("CRM").Entity<ClientDetailsModel>();
         builder.Entity<User>().HasData(
             new User
             {
@@ -25,6 +28,7 @@ public class ApplicationDbContext :DbContext
                 Contact = "0549234591",
                 RoleTypeId = "F529441F-72B0-4A51-B861-A6F7FC2327BA",
                 Password = "admin",
+                PhoneNumber = "233549234591",
                 TenantId = "F529441F-72B0-4A51-B861-A6F7FC2327BA",
                 CreatedBy = "admin",
                 ProfilePicture = "",
