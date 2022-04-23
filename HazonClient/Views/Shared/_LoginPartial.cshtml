@@ -1,26 +1,24 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+﻿
+<div class="dropdown-menu dropdown-menu-right animated slideInRight">
+    <ul class="dropdown-user">
+        <li role="separator" class="divider"></li>
+        <li><a href="#"> Profile</a></li>
+        <li><a href="#"> Balance</a></li>
+        <li><a href="#"> Inbox</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#"> Setting</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a class="link" id="userLogout"> Logout</a></li>
+    </ul>
+</div>
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
 
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
+            $("#userLogout").click(function() {
+                sessionStorage.clear();
+            });
+        })
+    </script>
 }
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
-</ul>

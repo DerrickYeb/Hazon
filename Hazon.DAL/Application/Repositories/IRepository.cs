@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
+using Hazon.DAL.Application.Abstractions.CRM;
 using Hazon.DAL.Domain.Models;
 
 namespace Hazon.DAL.Application.Repositories
 {
-    public interface IRepository
+    public interface IRepository<T>:ITransient
     {
-        public Task<T> GetByIdAsync<T>(int id)where T : BaseEntity;
-        public Task<T> GetAllAsync<T>()
+        public Task<T> GetByIdAsync<T>(Guid id)where T : BaseEntity;
+        public Task<IEnumerable<T>> GetAllAsync<T>()
         where T : BaseEntity;
         Task<int> GetCountAsync<T>(Expression<Func<T,bool>> predicate = null,CancellationToken cancellationToken = default) where T : BaseEntity;
 
@@ -20,8 +16,8 @@ namespace Hazon.DAL.Application.Repositories
         Task<T> CreateAsync<T>(T entity) where
             T:BaseEntity;
 
-        Task<A> ExistAsync<A>(Expression<Func<A, bool>> expression, CancellationToken token = default)
-            where A : BaseEntity;
+        Task<T> ExistAsync<T>(Expression<Func<T, bool>> expression, CancellationToken token = default)
+            where T : BaseEntity;
 
         Task<T> UpdateAsync<T>(T entity)where T:BaseEntity;
         Task<T> RemoveByIdAsync<T>(Guid id) where T : BaseEntity;

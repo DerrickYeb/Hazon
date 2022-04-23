@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Hazon.DAL.Domain.Models.SetupModels
+﻿namespace Hazon.DAL.Domain.Models.SetupModels
 {
     public class CommissionRate:BaseSetup
     {
-       
+        public int Rate { get; set; }
+
     }
 }
