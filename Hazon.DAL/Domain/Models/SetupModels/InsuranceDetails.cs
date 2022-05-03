@@ -2,5 +2,6 @@
 
 public class InsuranceDetails:BaseSetup
 {
+    public int Rate { get; set; }
 
 }
