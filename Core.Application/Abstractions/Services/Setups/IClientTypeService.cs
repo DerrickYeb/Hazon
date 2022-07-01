@@ -1,10 +1,11 @@
+using Core.Application.Services;
 using Core.Domain.Models;
 using Core.Domain.Models.SetupModels;
 using MassTransit.Futures.Contracts;
 
 namespace Core.Application.Abstractions.Services.Setups;
 
-public interface IClientTypeService
+public interface IClientTypeService:ITransient
 {
     Task<ClientType> CreateClientType(ClientType clientType);
     Task<ClientType> GetClientTypeById(Guid clientTypeId);

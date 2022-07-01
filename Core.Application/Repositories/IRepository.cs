@@ -13,6 +13,8 @@ namespace Core.Application.Repositories
 
         Task<List<T>> GetListAsync<T>(Expression<Func<T, bool>> expression,
             CancellationToken cancellationToken = default) where T : BaseEntity;
+
+        Task<IAsyncEnumerable<T>> GetListByYield<T>() where T : BaseEntity;
         Task<T> CreateAsync<T>(T entity) where
             T:BaseEntity;
 
