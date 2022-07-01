@@ -34,6 +34,12 @@ namespace Infrastructure.Persistence.Repositories
             return await _context.Set<T>().ToListAsync(cancellationToken: cancellationToken);
         }
 
+        public Task<IAsyncEnumerable<T1>> GetListByYield<T1>() where T1 : BaseEntity
+        {
+            return  Task.FromResult((_context.Set<T1>().AsEnumerable() as IAsyncEnumerable<T1>)!);
+            
+        }
+
         public async Task<T> CreateAsync<T>(T entity) where T : BaseEntity
         {
             var result = await _context.Set<T>().AddAsync(entity);
