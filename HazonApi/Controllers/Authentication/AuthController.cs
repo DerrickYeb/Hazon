@@ -1,5 +1,5 @@
-﻿using Hazon.DAL.Application.Abstractions;
-using Hazon.DAL.Domain.SharedDto.AccountDtos;
+using Core.Application.Abstractions;
+using Core.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -47,6 +47,7 @@ namespace HazonApi.Controllers.Authentication
                 });
             }
         }
+        
         [HttpPost("user/register")]
         public async Task<IActionResult> RegisterUser(UserInputModel user)
         {
@@ -72,6 +73,26 @@ namespace HazonApi.Controllers.Authentication
                     Error = e.Message,
                     Message = "An error occurred accessing the server",
                     StatusCode = 500
+                });
+            }
+        }
+        [HttpGet("get/user/profile")]
+        public async Task<IActionResult> GetUserProfile(string username)
+        {
+            try
+            {
+                var tenantkey = HttpContext.Request.Headers.Host;
+                var profile = await _authentication.GetUserProfile(username, tenantkey);
+                return Ok(profile);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e,"An error occured while executing {MethodName}-{Input} {Trace} \n",nameof(GetUserProfile),
+                    JsonConvert.DeserializeObject(username),e.StackTrace);
+                return Ok(new 
+                {
+                    e.Message,
+                    Trace = e.StackTrace
                 });
             }
         }
