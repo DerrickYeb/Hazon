@@ -4,6 +4,10 @@ namespace Hazon.DAL.Domain.Models;
 
 public class BaseEntity
 {
+    /// <summary>
+    /// Entiy Id
+    /// </summary>
+    /// <value></value>
     public Guid Id { get; set; }
     public string TenantId { get; set; }
     [Required]

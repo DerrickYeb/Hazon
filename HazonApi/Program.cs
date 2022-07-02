@@ -54,6 +54,6 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers().RequireAuthentication();
 
 app.Run();
