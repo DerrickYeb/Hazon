@@ -12,4 +12,5 @@ public interface IPolicyTypeService:ITransient
     Task<string> UpdatePolicyTypeName(string policyType);
     Task<string> UpdatePolicyTypeDescription(string description);
     Task<double> UpdatePolicyTypeRate(decimal rate);
+    Task<string> ExistAsync(PolicyType policyType);
 }

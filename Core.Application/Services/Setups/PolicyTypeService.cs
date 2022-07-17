@@ -13,7 +13,7 @@ public class PolicyTypeService:IPolicyTypeService
         _repository = repository;
     }
 
-    private async Task<string> ExistAsync(PolicyType policyType)
+    public async Task<string> ExistAsync(PolicyType policyType)
     {
         var exist = await _repository.ExistAsync<PolicyType>(p => p.Name.ToLowerInvariant().Trim() ==
             policyType.Name.ToLowerInvariant().Trim() && p.TenantKey == policyType.TenantKey);
