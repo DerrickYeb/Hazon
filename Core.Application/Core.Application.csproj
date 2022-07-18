@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core.Domain\Core.Domain.csproj" />
+    <ProjectReference Include="..\Shared.DTO\Shared.DTO.csproj" />
   </ItemGroup>
 
 </Project>

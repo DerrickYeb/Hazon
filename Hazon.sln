@@ -9,11 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Application", "Core.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HazonApi", "HazonApi\HazonApi.csproj", "{8BBC141C-3893-4DE8-B3A9-C8DB4B9ABCE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Domain", "Core.Domain\Core.Domain.csproj", "{6AE4D711-A072-488F-BB14-8AAA8F5B2399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Domain", "Core.Domain\Core.Domain.csproj", "{6AE4D711-A072-488F-BB14-8AAA8F5B2399}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migration.PostgreSQL", "Migration.PostgreSQL\Migration.PostgreSQL.csproj", "{C3999A3C-FA2D-451D-A111-0B9FA727215D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Migration.PostgreSQL", "Migration.PostgreSQL\Migration.PostgreSQL.csproj", "{C3999A3C-FA2D-451D-A111-0B9FA727215D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{56F39D8E-889E-4AB5-BFAA-471566E12B36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{56F39D8E-889E-4AB5-BFAA-471566E12B36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.DTO", "Shared.DTO\Shared.DTO.csproj", "{EE07A534-FDAF-47A8-A560-19F44284674C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{56F39D8E-889E-4AB5-BFAA-471566E12B36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56F39D8E-889E-4AB5-BFAA-471566E12B36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56F39D8E-889E-4AB5-BFAA-471566E12B36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE07A534-FDAF-47A8-A560-19F44284674C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE07A534-FDAF-47A8-A560-19F44284674C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE07A534-FDAF-47A8-A560-19F44284674C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE07A534-FDAF-47A8-A560-19F44284674C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +57,7 @@ Global
 		{6AE4D711-A072-488F-BB14-8AAA8F5B2399} = {E0619187-9AFA-43BB-BC32-2CC70342B094}
 		{C3999A3C-FA2D-451D-A111-0B9FA727215D} = {E0619187-9AFA-43BB-BC32-2CC70342B094}
 		{56F39D8E-889E-4AB5-BFAA-471566E12B36} = {E0619187-9AFA-43BB-BC32-2CC70342B094}
+		{EE07A534-FDAF-47A8-A560-19F44284674C} = {E0619187-9AFA-43BB-BC32-2CC70342B094}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D42DC225-2FC5-4425-8747-BB76D0253D6D}
