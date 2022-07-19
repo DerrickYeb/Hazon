@@ -4,13 +4,11 @@ using Core.Application.Abstractions.Services.General;
 using Core.Application.Settings;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
 using Shared.DTO.Multitenancy;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Services
 {
@@ -22,8 +20,15 @@ namespace Infrastructure.Services
         private ICurrentUser _currentUser;
         private MultitenancySettings _tenantSettings;
         private readonly TenantDbContext _context;
+        private readonly ISerializerService _serializerService;
 
-        public TenantServices(TenantDbContext context,IOptions<MultitenancySettings> tenantSettings, ICurrentUser currentUser, ICacheService cacheService, TenantDto currentDto, HttpContext httpContext)
+        public TenantServices(TenantDbContext context,
+                              IOptions<MultitenancySettings> tenantSettings,
+                              ICurrentUser currentUser,
+                              ICacheService cacheService,
+                              TenantDto currentDto,
+                              HttpContext httpContext,
+                              ISerializerService serializerService)
         {
             _context = context;
             _tenantSettings = tenantSettings.Value;
@@ -31,6 +36,33 @@ namespace Infrastructure.Services
             _cacheService = cacheService;
             _currentDto = currentDto;
             _httpContext = httpContext;
+            _serializerService = serializerService;
+
+            if(_httpContext != null)
+            {
+                if (_currentUser.IsAuthenticated())
+                {
+                    SetTenant(_currentUser.GetTenantKey());
+                }
+                else
+                {
+                    string tenantFromQueryString = System.Web.HttpUtility.ParseQueryString(_httpContext.Request.QueryString.Value!).Get("tenantKey")!;
+
+                    if(tenantFromQueryString != null)
+                    {
+                        SetTenant(tenantFromQueryString);
+                    }
+                    else if(_httpContext.Request.Headers.TryGetValue("tenantKey",out var tenantKey))
+                    {
+                        SetTenant(tenantKey);
+                    }
+                    else
+                    {
+                        throw new UnauthorizedAccessException();
+                    }
+
+                }
+            }
         }
 
         public string GetConnectionString()
@@ -57,7 +89,47 @@ namespace Infrastructure.Services
         {
             TenantDto tenantDto;
             string cachekey = CacheKey.GetCachekey("tenant", tenantId);
-            byte[]
+            byte[]? cacheData = string.IsNullOrEmpty(cachekey) ? null : _cacheService.GetAsync(cachekey).Result;
+            if(cacheData != null)
+            {
+                _cacheService.RefreshAsync(cachekey).Wait();
+                tenantDto = _serializerService.Deserialize<TenantDto>(Encoding.Default.GetString(cacheData));
+            }
+            else
+            {
+                var tenant = _context.Tenants.Where(c => c.Key == tenantId).FirstOrDefaultAsync().Result;
+                tenantDto = tenant.Adapt<TenantDto>();
+
+                if(tenantDto != null)
+                {
+                    var options = new DistributedCacheEntryOptions();
+                    byte[] serializeData = Encoding.Default.GetBytes(_serializerService.Serialize(tenantDto));
+                    _cacheService.SetAsync(cachekey, serializeData, options).Wait();
+                }
+            }
+
+            if(tenantDto == null)
+            {
+                //return custom tenant error here
+            }
+            if(tenantDto?.Key != "")
+            {
+                if (!tenantDto.IsActive)
+                {
+                    //return inactive error here
+                }
+
+                if(DateTime.UtcNow > tenantDto.ValidUpto)
+                {
+                    //return subscription error here
+                }
+            }
+            _currentDto = tenantDto;
+
+            if (string.IsNullOrEmpty(tenantDto.ConnectionString))
+            {
+                SetDefaultConnectionStringToCurrentTenant();
+            }
         }
     }
 }

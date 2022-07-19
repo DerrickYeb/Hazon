@@ -1,3 +1,6 @@
+using Core.Application.Services;
+using Core.Domain.Models.SetupModels;
+
 namespace Core.Application.Abstractions.Services.Setups
 {
     public interface IDynamicSetupService : ITransient
