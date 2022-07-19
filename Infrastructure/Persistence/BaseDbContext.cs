@@ -1,21 +1,31 @@
 ﻿using Core.Application.Abstractions.Services.AuthService;
 using Core.Application.Abstractions.Services.General;
 using Core.Domain.Contracts;
+using Infrastructure.Auditing.Enums;
+using Infrastructure.Auditing.Models;
+using Infrastructure.Identity.Models;
 using Infrastructure.Persistence.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence
 {
-    public abstract class BaseDbContext:DbContext
+    public abstract class BaseDbContext:IdentityDbContext<ApplicationUser,ApplicationRole,string,IdentityUserClaim<string>,
+        IdentityUserRole<string>,IdentityUserLogin<string>,ApplicationRoleClaim,IdentityUserToken<string>>
     {
         private readonly ISerializerService _serializer;
         private readonly ITenantService _tenantService;
         private readonly ICurrentUser _currentService;
+
+        public DbSet<Trail> AuditTrails { get; set; }
+
         private string TenantKey { get; set; }
         public BaseDbContext(DbContextOptions<BaseDbContext> options, ICurrentUser currentService, ITenantService tenantService, ISerializerService serializer) : base(options)
         {
             _currentService = currentService;
             _tenantService = tenantService;
+            TenantKey = _tenantService.GetCurrentTenant()?.Key!;
             _serializer = serializer;
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

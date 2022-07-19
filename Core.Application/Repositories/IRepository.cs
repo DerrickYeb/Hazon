@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Core.Application.Services;
 using Core.Domain.Contracts;
+using Core.Domain.Models.SetupModels;
 
 namespace Core.Application.Repositories
 {
@@ -25,6 +26,7 @@ namespace Core.Application.Repositories
         Task<bool> RemoveByIdAsync<T>(Guid id) where T : BaseEntity;
         Task<T> RemoveAsync<T>(T entity);
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+        Task<T1> UpdateAsync<T1>(PolicyType newDescription);
     }
     
 }

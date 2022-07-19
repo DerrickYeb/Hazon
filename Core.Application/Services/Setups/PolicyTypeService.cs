@@ -65,7 +65,7 @@ public class PolicyTypeService:IPolicyTypeService
         {
             Name = policyType
         };
-        return await _repository.UpdateAsync<>(newName);
+        return await _repository.UpdateAsync<string>(newName);
     }
 
     public async Task<string> UpdatePolicyTypeDescription(string description)
@@ -74,7 +74,7 @@ public class PolicyTypeService:IPolicyTypeService
         {
             Description = description
         };
-        return await _repository.UpdateAsync<>(newDescription);
+        return await _repository.UpdateAsync<string>(newDescription);
     }
 
     public async Task<double> UpdatePolicyTypeRate(decimal rate)
@@ -83,6 +83,6 @@ public class PolicyTypeService:IPolicyTypeService
         {
             Commission = rate
         };
-        return await _repository.UpdateAsync<>(newRate);
+        return await _repository.UpdateAsync<double>(newRate);
     }
 }

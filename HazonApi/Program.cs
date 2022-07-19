@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("HazonConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString,e => e.MigrationsAssembly("Migration.PostgreSQL")));
+
 builder.Services.AddServiceCollection();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -54,6 +55,6 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapControllers().RequireAuthentication();
+app.MapControllers();
 
 app.Run();

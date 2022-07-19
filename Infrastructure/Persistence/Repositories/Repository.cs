@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Core.Application.Repositories;
 using Core.Domain.Contracts;
+using Core.Domain.Models.SetupModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories
@@ -71,6 +72,11 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public Task<T1> UpdateAsync<T1>(PolicyType newDescription)
+        {
+            throw new NotImplementedException();
         }
 
         // public Task<T> RemoveAsync<T>(T entity) where T : class

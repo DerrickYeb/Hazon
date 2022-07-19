@@ -98,7 +98,15 @@ namespace Infrastructure.Services
             else
             {
                 var tenant = _context.Tenants.Where(c => c.Key == tenantId).FirstOrDefaultAsync().Result;
-                tenantDto = tenant.Adapt<TenantDto>();
+                tenantDto = new TenantDto
+                {
+                    Key = tenant.Key,
+                    Name = tenant.Name,
+                    AdminEmail = tenant.AdminEmail,
+                    IsActive = tenant.IsActive,
+                    ConnectionString = tenant.ConnectionString,
+                    ValidUpto = tenant.ValidUpto
+                };
 
                 if(tenantDto != null)
                 {
