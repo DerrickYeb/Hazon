@@ -4,7 +4,7 @@ namespace Core.Application.Abstractions.Services.AuthService
 {
     public interface IRoleClaimsService : ITransientService
     {
-        // public Task<bool> HasPermissionAsync(string userId, string permission);
+         public Task<bool> HasPermissionAsync(string userId, string permission);
         //
         // Task<Result<List<RoleClaimResponse>>> GetAllAsync();
         //

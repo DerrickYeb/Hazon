@@ -1,18 +1,15 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Core.Application.Abstractions;
+﻿using Core.Application.Abstractions;
 using Core.Application.Repositories;
 using Core.Domain.Models;
-using Core.Domain.Models.Multitenancy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Core.Application.Services.AuthService
 {
-    public class AuthenticationService:IAuthenticationRepository
+    public class AuthenticationService : IAuthenticationRepository
     {
         private readonly IConfiguration _configuration;
         private readonly IRepository<User> _repository;
@@ -97,7 +94,7 @@ namespace Core.Application.Services.AuthService
             try
             {
                 var profile =
-                    await _repository.ExistAsync<User>( c => c.TenantKey == tenantKey && c.Username == username);
+                    await _repository.ExistAsync<User>(c => c.TenantKey == tenantKey && c.Username == username);
                 return profile;
             }
             catch (Exception e)
@@ -107,5 +104,5 @@ namespace Core.Application.Services.AuthService
         }
     }
 
-   
+
 }

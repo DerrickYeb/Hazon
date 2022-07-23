@@ -5,17 +5,18 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 
-[assembly:InternalsVisibleTo("Hazon.HazonApi")]
+[assembly:InternalsVisibleTo("HazonApi")]
 namespace Infrastructure.Extensions;
 
 internal static class ApplicationBuilderExtension
 {
-    public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder, IConfiguration configuration)
+    public static WebApplication UseInfrastructure(this WebApplication? builder,IConfiguration configuration)
     {
         var options = new RequestLocalizationOptions()
         {
             DefaultRequestCulture = new RequestCulture(new CultureInfo("en-US"))
         };
+        //var builder = app.Build();
         builder.UseRequestLocalization(options);
         builder.UseStaticFiles();
         // builder.UseMiddlewares(configuration);
@@ -31,6 +32,7 @@ internal static class ApplicationBuilderExtension
         {
             endpoints.MapControllers().RequireAuthorization();
         });
+        builder.Run();
         
         return builder;
     }

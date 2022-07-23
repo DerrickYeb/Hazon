@@ -14,13 +14,13 @@ namespace Infrastructure.Services
 {
     public class TenantServices : ITenantService
     {
-        private readonly HttpContext _httpContext;
+        private HttpContext _httpContext;
         private TenantDto _currentDto;
         private ICacheService _cacheService;
         private ICurrentUser _currentUser;
         private MultitenancySettings _tenantSettings;
-        private readonly TenantDbContext _context;
-        private readonly ISerializerService _serializerService;
+        private TenantDbContext _context;
+        private ISerializerService _serializerService;
 
         public TenantServices(TenantDbContext context,
                               IOptions<MultitenancySettings> tenantSettings,

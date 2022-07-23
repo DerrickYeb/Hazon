@@ -22,10 +22,7 @@ public class ApplicationDbContext :BaseDbContext
         _currentUser = currentUser;
         _serializer = serializer;
     }
-    protected override void OnModelCreating(ModelBuilder optionsBuilder)
-    {
-        base.OnModelCreating(optionsBuilder);
-    }
+    
     public DbSet<User> Users { get; set; }
     public DbSet<ClientDetailsModel> ClientDetails { get; set; }
     public DbSet<CommissionRate> CommissionRates { get; set; }
@@ -36,6 +33,11 @@ public class ApplicationDbContext :BaseDbContext
     public DbSet<PaymentModel> PaymentModels { get; set; }
     public DbSet<TransactionType> TransactionTypes { get; set; }
 
+
+    protected override void OnModelCreating(ModelBuilder optionsBuilder)
+    {
+        base.OnModelCreating(optionsBuilder);
+    }
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         var currentUserId = _currentUser.GetUserId();

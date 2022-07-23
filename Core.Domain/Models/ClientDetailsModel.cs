@@ -3,7 +3,7 @@ using Core.Domain.Contracts;
 
 namespace Core.Domain.Models
 {
-    public class ClientDetailsModel:BaseEntity,IMustHaveTenant
+    public class ClientDetailsModel:AuditableEntity,IMustHaveTenant
     {
         [Required]
         public string FirstName { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Core.Domain.Models
 {
-    public class User:BaseEntity,IMustHaveTenant
+    public class User:AuditableEntity,IMustHaveTenant
     {
         public string FirstName { get; set; }
         public string LastName { get; set; } = string.Empty;

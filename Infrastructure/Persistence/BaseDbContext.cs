@@ -11,8 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence
 {
-    public abstract class BaseDbContext:IdentityDbContext<ApplicationUser,ApplicationRole,string,IdentityUserClaim<string>,
-        IdentityUserRole<string>,IdentityUserLogin<string>,ApplicationRoleClaim,IdentityUserToken<string>>
+    public abstract class BaseDbContext:DbContext
     {
         private readonly ISerializerService _serializer;
         private readonly ITenantService _tenantService;

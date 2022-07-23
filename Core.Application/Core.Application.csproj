@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Domain\Data" />
     <Folder Include="Domain\SharedDto\AccountDtos" />
-    <Folder Include="Extensions" />
   </ItemGroup>
 
   <ItemGroup>

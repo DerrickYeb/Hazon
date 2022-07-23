@@ -1,6 +1,8 @@
-﻿namespace Core.Domain.Models.PolicyModels
+﻿using Core.Domain.Contracts;
+
+namespace Core.Domain.Models.PolicyModels
 {
-    public class PremiumPayment
+    public class PremiumPayment:AuditableEntity,IMustHaveTenant
     {
         public Guid ClientId { get; set; }
         public Guid PolicyId { get; set; }
@@ -14,5 +16,6 @@
         public DateTime CoverStartDate { get; set; }
         public DateTime CoverEndDate { get; set; }
         public decimal OutStanding { get; set; }
+        public string TenantKey { get; set; }
     }
 }

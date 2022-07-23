@@ -6,8 +6,8 @@ namespace Infrastructure.Services
 {
     public class CacheService : ICacheService
     {
-        private readonly ILogger<CacheService> _logger;
-        private readonly IDistributedCache _cache;
+        private ILogger<CacheService> _logger;
+        private IDistributedCache _cache;
 
         public CacheService(IDistributedCache cache, ILogger<CacheService> logger)
         {

@@ -1,6 +1,8 @@
-﻿namespace Core.Domain.Models.PolicyModels
+﻿using Core.Domain.Contracts;
+
+namespace Core.Domain.Models.PolicyModels
 {
-    public class PolicyBaseEntity
+    public class PolicyBaseEntity:AuditableEntity,IMustHaveTenant
     {
         public Guid InsurerId { get; set; }
         public string? PolicyNumber { get; set; }
@@ -24,5 +26,6 @@
         public string? IdNumber { get; set; }
         public decimal StickerFee { get; set; }
         public decimal Premium { get; set; }
+        public string TenantKey { get; set; }
     }
 }

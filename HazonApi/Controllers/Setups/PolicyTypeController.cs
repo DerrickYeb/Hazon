@@ -1,4 +1,6 @@
 using Core.Application.Abstractions.Services.Setups;
+using Core.Domain.Models.SetupModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HazonApi.Controllers.Setups;
 
@@ -39,10 +41,15 @@ public class PolicyTypeController:ControllerBase
     public async Task<IActionResult> GetAllPolicyTypes(){
         try
         {
-            var policies = await _policyType.GetAllPolicyTypes();
+            var policies = await _policyType.GetAllPolicyType();
             if (policies == null) return BadRequest("Empty list! Try adding a policy type");
-            
+
             return Ok(policies);
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
     }
 
     [HttpPost("create/policy/type")]
@@ -62,7 +69,8 @@ public class PolicyTypeController:ControllerBase
         }
     }
     [HttpDelete("delete/policy/type/by/{policyTypeId}")]
-    public async Task<IActionResult> DeletePolicyType(Guid policyTypeId){
+        public async Task<IActionResult> DeletePolicyType(Guid policyTypeId)
+        {
         try
         {
             var deleted = await _policyType.DeletePolicyType(policyTypeId);
@@ -103,8 +111,9 @@ public class PolicyTypeController:ControllerBase
             return BadRequest();
         }
     }
-       [HttpPut("update/policy/type/rate/{rate}")]
-       public async Task<IActionResult> UpdatePolicyTypeRate(decimal rate){
+    [HttpPut("update/policy/type/rate/{rate}")]
+    public async Task<IActionResult> UpdatePolicyTypeRate(decimal rate)
+    {
         try
         {
             var updated = await _policyType.UpdatePolicyTypeRate(rate);
@@ -116,5 +125,5 @@ public class PolicyTypeController:ControllerBase
             _logger.LogError("Error in UpdatePolicyTypeRate");
             return BadRequest();
         }
-    
+    }
 }

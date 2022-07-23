@@ -1,6 +1,7 @@
 using Core.Application.Abstractions.Services.General;
 using Core.Application.Extensions;
 using Hangfire;
+using Infrastructure.Identity.Permissions;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Extensions;
 using Infrastructure.Services;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Localization;
 
 namespace Infrastructure.Extensions
 {
@@ -31,14 +33,14 @@ namespace Infrastructure.Extensions
             services.AddLocalization();
             services.AddServiceCollection();
             services.AddSettings(config);
-            services.AddPermissions(config);
+            //services.AddPermissions(config);
             services.AddIdentity(config);
             services.AddMultitenancy<TenantDbContext, ApplicationDbContext>(config);
             services.AddHangfireServer();
             services.AddRouting(options => options.LowercaseUrls = true);
             // services.AddMiddlewares(config);
             // services.AddSwaggerDocumentation(config);
-            // services.AddCorsPolicy();
+             //services.AddCorsPolicy();
             services.AddApiVersioning(config =>
            {
                config.DefaultApiVersion = new ApiVersion(1, 0);

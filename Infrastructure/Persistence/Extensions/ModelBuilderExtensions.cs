@@ -1,21 +1,15 @@
 ﻿using Core.Application.Abstractions.Services.General;
-using Core.Domain.Models;
 using Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Extensions
 {
     public static class ModelBuilderExtensions
     {
-        public static void ApplyAuthenticationConfiguration(this ModelBuilder modelBuilder,ITenantService service)
+        public static void ApplyAuthenticationConfiguration(this ModelBuilder modelBuilder, ITenantService service)
         {
             var dbProvider = service.GetDatabaseProvider();
             modelBuilder.Entity<ApplicationUser>(user =>
@@ -27,7 +21,7 @@ namespace Infrastructure.Persistence.Extensions
             {
                 role.ToTable("Roles", "Authentication");
                 role.Metadata.RemoveIndex(new[] { role.Property(r => r.NormalizedName).Metadata });
-                role.HasIndex(r => new {r.NormalizedName,r.TenantKey}).HasDatabaseName("RoleIndexName").IsUnique();
+                role.HasIndex(r => new { r.NormalizedName, r.TenantKey }).HasDatabaseName("RoleIndexName").IsUnique();
             });
 
             modelBuilder.Entity<ApplicationRoleClaim>(claim =>
@@ -56,7 +50,7 @@ namespace Infrastructure.Persistence.Extensions
             });
         }
 
-        public static void ApplyGlobalFilters<TInterface>(this ModelBuilder modelBuilder,Expression<Func<TInterface,bool>> expression)
+        public static void ApplyGlobalFilters<TInterface>(this ModelBuilder modelBuilder, Expression<Func<TInterface, bool>> expression)
         {
             var entities = modelBuilder.Model
                 .GetEntityTypes()

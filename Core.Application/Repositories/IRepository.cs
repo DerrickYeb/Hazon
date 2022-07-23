@@ -1,11 +1,12 @@
 ﻿using System.Linq.Expressions;
+using Core.Application.Abstractions.Services.General;
 using Core.Application.Services;
 using Core.Domain.Contracts;
 using Core.Domain.Models.SetupModels;
 
 namespace Core.Application.Repositories
 {
-    public interface IRepository<T>:ITransient
+    public interface IRepository<T>:ITransientService
     {
         public Task<T> GetByIdAsync<T>(Guid id)where T : BaseEntity;
         public Task<IEnumerable<T>> GetAllAsync<T>()

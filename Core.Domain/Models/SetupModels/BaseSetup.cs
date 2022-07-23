@@ -3,7 +3,7 @@ using Core.Domain.Contracts;
 
 namespace Core.Domain.Models.SetupModels;
 
-public class BaseSetup:BaseEntity,IMustHaveTenant
+public class BaseSetup:AuditableEntity,IMustHaveTenant
 {
     [Required]
     public string Name { get; set; }

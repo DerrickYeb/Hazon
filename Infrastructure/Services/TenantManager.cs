@@ -3,14 +3,13 @@ using Core.Application.Abstractions.Services.General;
 using Core.Application.Settings;
 using Infrastructure.Identity.Models;
 using Infrastructure.Persistence;
-using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Shared.DTO.Multitenancy;
 
-namespace HoriBackend.Infrastructure.Services.General
+namespace Infrastructure.Services
 {
     public class TenantManager : ITenantManager
     {

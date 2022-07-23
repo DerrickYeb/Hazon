@@ -3,7 +3,7 @@ using Core.Application.Repositories;
 
 namespace Core.Application.Abstractions.Services.General
 {
-    public interface IJobService : ITransientService
+    public interface IJobService : IScopedService
     {
         string Enqueue(Expression<Func<Task>> methodCall);
     }

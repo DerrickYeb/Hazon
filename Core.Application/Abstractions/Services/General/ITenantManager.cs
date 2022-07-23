@@ -2,7 +2,7 @@ using Core.Application.Repositories;
 
 namespace Core.Application.Abstractions.Services.General
 {
-    public interface ITenantManager : ITransientService
+    public interface ITenantManager : IScopedService
     {
         // public Task<Result<TenantDto>> GetByKeyAsync(string key);
         // public Task<Result<List<TenantDto>>> GetAllAsync();

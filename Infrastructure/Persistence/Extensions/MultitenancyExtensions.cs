@@ -31,7 +31,7 @@ namespace Infrastructure.Persistence.Extensions
             switch (dbProvider.ToLower())
             {
                 case "postgresql":
-                    services.AddDbContext<T>(m => m.UseNpgsql(rootConnectionString, e => e.MigrationsAssembly("Migrators.PostgreSQL")));
+                    services.AddDbContext<T>(m => m.UseNpgsql(rootConnectionString, e => e.MigrationsAssembly("Migration.PostgreSQL")));
                     services.AddHangfire(x => x.UsePostgreSqlStorage(rootConnectionString));
                     break;
                 case "mssql":
